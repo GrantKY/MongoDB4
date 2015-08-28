@@ -1,0 +1,267 @@
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivityFragment">
+
+    <TextView android:text="@string/version" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:scrollIndicators="right" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        android:id="@+id/button"
+        android:layout_alignBottom="@+id/butSetDate"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:onClick="OnSubmit" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/radiocontrols_GlucoseReadings"
+        android:layout_below="@+id/edtxtGlucoseReading"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_above="@+id/edittxtCarbsGiven"
+        android:layout_alignRight="@+id/edtxtGlucoseReading"
+        android:layout_alignEnd="@+id/edtxtGlucoseReading">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/meter"
+            android:id="@+id/rbMeter"
+            android:checked="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sensor"
+            android:id="@+id/rbSensor"
+            android:checked="false" />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/event_type"
+        android:id="@+id/txtEventType"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_event_types"
+        android:spinnerMode="dropdown"
+        android:layout_alignTop="@+id/txtEventType"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/txtGlucoseReading"
+        android:layout_toEndOf="@+id/txtGlucoseReading"
+        android:layout_above="@+id/edtxtGlucoseReading" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/glucose_reading"
+        android:id="@+id/txtGlucoseReading"
+        android:layout_below="@+id/txtEventType" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtxtGlucoseReading"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_alignTop="@+id/txtGlucoseReading"
+        android:layout_toRightOf="@+id/txtGlucoseReading"
+        android:layout_alignRight="@+id/spinner_event_types"
+        android:layout_alignEnd="@+id/spinner_event_types"
+        android:inputType="numberDecimal"
+        android:minLines="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/carbs_given"
+        android:id="@+id/textView2"
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/edtxtGlucoseReading"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittxtCarbsGiven"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignRight="@+id/radiocontrols_GlucoseReadings"
+        android:layout_alignEnd="@+id/radiocontrols_GlucoseReadings"
+        android:layout_toRightOf="@+id/butSetTime"
+        android:layout_toEndOf="@+id/butSetTime" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/insulin_given"
+        android:id="@+id/textView3"
+        android:layout_alignBottom="@+id/edittxtInsulinGiven"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittxtInsulinGiven"
+        android:inputType="numberDecimal"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/edittxtCarbsGiven"
+        android:layout_alignStart="@+id/edittxtCarbsGiven"
+        android:maxLines="1"
+        android:layout_below="@+id/textView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/eating_in"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/edittxtInsulinGiven"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_eating_in"
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/textView3"
+        android:layout_toRightOf="@+id/txtGlucoseReading"
+        android:layout_toEndOf="@+id/txtGlucoseReading"
+        android:layout_above="@+id/textView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/additional_notes"
+        android:id="@+id/textView5"
+        android:layout_marginTop="45dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextAdditionalNotes"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/spinner_eating_in"
+        android:layout_alignEnd="@+id/spinner_eating_in"
+        android:minLines="3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/entered_by"
+        android:id="@+id/textView6"
+        android:layout_alignTop="@+id/edtxtEnteredBy"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtxtEnteredBy"
+        android:layout_below="@+id/editTextAdditionalNotes"
+        android:layout_alignLeft="@+id/edittxtInsulinGiven"
+        android:layout_alignStart="@+id/edittxtInsulinGiven"
+        android:layout_alignRight="@+id/editTextAdditionalNotes"
+        android:layout_alignEnd="@+id/editTextAdditionalNotes" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/event_time"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/edtxtEnteredBy"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/radioGroup"
+        android:layout_below="@+id/edtxtEnteredBy"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_above="@+id/butSetDate">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/now"
+            android:id="@+id/rbNow"
+            android:checked="true"
+            android:onClick="OnNowClicked" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/other"
+            android:id="@+id/rbOther"
+            android:checked="false"
+            android:onClick="OnOtherClicked" />
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/set_date"
+        android:id="@+id/butSetDate"
+        android:onClick="setDate"
+        android:layout_below="@+id/textView7"
+        android:layout_alignBottom="@+id/butSetTime"
+        android:layout_toLeftOf="@+id/butSetTime"
+        android:layout_toStartOf="@+id/butSetTime" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/set_time"
+        android:id="@+id/butSetTime"
+        android:layout_gravity="center_vertical"
+        android:onClick="setTime"
+        android:layout_below="@+id/textView7"
+        android:layout_toLeftOf="@+id/button"
+        android:layout_toStartOf="@+id/button" />
+
+</RelativeLayout>
+</ScrollView>
