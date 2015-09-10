@@ -89,7 +89,45 @@ public class MainActivity extends AppCompatActivity {
             MongoPortal portal = new MongoPortal();
             portal.execute(CreateTreatmentObject());
             Toast.makeText(getApplicationContext(), "Care Portal Record Submitted", Toast.LENGTH_LONG).show();
+
+            ResetControls();
         }
+
+    }
+
+    private void ResetControls()
+    {
+        ResetEditTextControl(R.id.editTextAdditionalNotes);
+        ResetEditTextControl(R.id.edtxtGlucoseReading);
+        ResetEditTextControl(R.id.edittxtCarbsGiven);
+        ResetEditTextControl(R.id.edtxtEnteredBy);
+        ResetEditTextControl(R.id.edittxtInsulinGiven);
+
+
+        ResetSpinnerControl(R.id.spinner_eating_in, 0);
+        ResetSpinnerControl(R.id.spinner_event_types, 0);
+
+
+        RadioButton rbbutton = (RadioButton)findViewById(R.id.rbMeter);
+        rbbutton.setChecked(true);
+
+        rbbutton = (RadioButton)findViewById(R.id.rbNow);
+        rbbutton.setChecked(true);
+
+        pickerDialogs.OK_Not_Pressed();
+        timepicker.OK_Not_Pressed();
+    }
+
+    private void ResetSpinnerControl(int id, int index)
+    {
+        Spinner spinner = (Spinner)findViewById(id);
+        spinner.setSelection(index);
+    }
+
+    private void ResetEditTextControl(int id)
+    {
+        EditText txt = (EditText)findViewById(id);
+        txt.setText("");
 
     }
     private String GetCurrentTextInEditText(int Id) {
@@ -139,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Measurement Method
         RadioButton rdbutton = (RadioButton)findViewById(R.id.rbMeter);
-        String result = rdbutton.isChecked() == true ? "Finger" : "Sensor";
+        String result = rdbutton.isChecked() ? "Finger" : "Sensor";
         treatmentObj.SetMeasurementMethod(result);
 
         return treatmentObj;

@@ -36,6 +36,7 @@ public class MongoPortal extends AsyncTask<Object, Void, String> {
     public void PopulateTreatmentTable(TreatmentObject treatmentobj) {
 
         String dbURI = "mongodb://<username>:<password?@<server>:<port>/<database>";
+
         String databasename = GetDatabaseName(dbURI);
 
         MongoClient mongoClient = null;
