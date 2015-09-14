@@ -87,7 +87,9 @@ public class MainActivity extends AppCompatActivity {
 
         if(Valid()) {
             MongoPortal portal = new MongoPortal();
-            portal.execute(CreateTreatmentObject());
+            TreatmentObject treatmentobj = CreateTreatmentObject();
+
+            portal.execute(treatmentobj);
             Toast.makeText(getApplicationContext(), "Care Portal Record Submitted", Toast.LENGTH_LONG).show();
 
             ResetControls();
@@ -114,9 +116,10 @@ public class MainActivity extends AppCompatActivity {
         rbbutton = (RadioButton)findViewById(R.id.rbNow);
         rbbutton.setChecked(true);
 
-        pickerDialogs.OK_Not_Pressed();
-        timepicker.OK_Not_Pressed();
-    }
+
+        // Reset back to Now button
+        NowRbClicked();
+     }
 
     private void ResetSpinnerControl(int id, int index)
     {
@@ -232,6 +235,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OnNowClicked(View v){
+        NowRbClicked();
+    }
+
+    private void NowRbClicked() {
+
         SetButtonStatus(false);
         pickerDialogs.OK_Not_Pressed();
         timepicker.OK_Not_Pressed();
