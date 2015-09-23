@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference android:title="Mongo DB String"
+        android:summary="Mongo DB connection string"
+        android:key="mongoDBString"
+        android:defaultValue = "mongodb://&lt;username&gt;:&lt;password&gt;@&lt;server&gt;:&lt;port&gt;/&lt;database&gt;" />
+</PreferenceScreen>

@@ -1,5 +1,9 @@
 package com.example.gy185013.mongodb4;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.support.v4.app.DialogFragment;
 import android.widget.Toast;
 
 import java.text.DateFormat;
@@ -48,17 +51,20 @@ public class MainActivity extends AppCompatActivity {
 // Apply the adapter to the spinner
         spinner_eatingin.setAdapter(adapter_eatingin);
 
-        // Initial Button Status
-       // RadioButton button = (RadioButton)findViewById(R.id.rbOther);
-      //  button.setAlpha(.5f);
-       // button.setClickable(false);
-
-       // button = (RadioButton)findViewById(R.id.rbNow);
-       // button.setAlpha(.5f);
-       // button.setClickable(false);
-
+       // ClearSharedResources();
+       // Set now and other status to default
         SetButtonStatus(false);
     }
+
+
+
+    private void ClearSharedResources()
+    {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        editor.clear();
+        editor.commit();
+    }
+
 
 
     @Override
@@ -77,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent i = new Intent(this, MyPreferenceActivity.class);
+            startActivity(i);
+
             return true;
         }
 
@@ -88,13 +97,21 @@ public class MainActivity extends AppCompatActivity {
         if(Valid()) {
             MongoPortal portal = new MongoPortal();
             TreatmentObject treatmentobj = CreateTreatmentObject();
+            String dbURL =  getDBURL();
 
-            portal.execute(treatmentobj);
-            Toast.makeText(getApplicationContext(), "Care Portal Record Submitted", Toast.LENGTH_LONG).show();
+            portal.execute(treatmentobj, dbURL, this.getApplicationContext());
 
             ResetControls();
         }
 
+    }
+
+    private String getDBURL()
+    {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        String key = getResources().getString(R.string.mongodbKey);
+        String dbURL =  settings.getString(key, null);
+        return dbURL;
     }
 
     private void ResetControls()
@@ -231,6 +248,15 @@ public class MainActivity extends AppCompatActivity {
                 valid = false;
             }
         }
+
+        // Check mnongodb string is valid
+      //  mongodb://<username>:<password>@<server>:<port>/<database>
+     //   String dbUrl = getDBURL();
+       // if( dbUrl == null || dbUrl.length() == 0) {
+       //     valid = false;
+        //    Toast.makeText(getApplicationContext(), "Invalid Mongo DB String. Please check string in settings", Toast.LENGTH_LONG).show();
+
+       // }
         return valid;
     }
 
