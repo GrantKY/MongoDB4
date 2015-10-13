@@ -249,14 +249,17 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+
+
+        String dbUrl = getDBURL();
+
         // Check mnongodb string is valid
       //  mongodb://<username>:<password>@<server>:<port>/<database>
      //   String dbUrl = getDBURL();
-       // if( dbUrl == null || dbUrl.length() == 0) {
-       //     valid = false;
-        //    Toast.makeText(getApplicationContext(), "Invalid Mongo DB String. Please check string in settings", Toast.LENGTH_LONG).show();
-
-       // }
+        if( dbUrl == null || dbUrl.length() == 0 || dbUrl.contains(">") || dbUrl.contains("<")) {
+            valid = false;
+           Toast.makeText(getApplicationContext(), "Invalid Mongo DB String. Please check string in settings", Toast.LENGTH_LONG).show();
+        }
         return valid;
     }
 
