@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 // Apply the adapter to the spinner
         spinner_eatingin.setAdapter(adapter_eatingin);
 
+         EditTextControl(R.id.edtxtEnteredBy, getUSERNAME());
        // ClearSharedResources();
        // Set now and other status to default
         SetButtonStatus(false);
