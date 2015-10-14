@@ -4,4 +4,8 @@
         android:summary="Mongo DB connection string"
         android:key="mongoDBString"
         android:defaultValue = "mongodb://&lt;username&gt;:&lt;password&gt;@&lt;server&gt;:&lt;port&gt;/&lt;database&gt;" />
+    <EditTextPreference android:title="User Name"
+        android:summary="User Name string"
+        android:key="userNameString"
+        android:defaultValue = "First Last" />
 </PreferenceScreen>

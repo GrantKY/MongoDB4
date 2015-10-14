@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 // Apply the adapter to the spinner
         spinner_eatingin.setAdapter(adapter_eatingin);
 
+         EditTextControl(R.id.edtxtEnteredBy, getUSERNAME());
        // ClearSharedResources();
        // Set now and other status to default
         SetButtonStatus(false);
@@ -114,12 +115,21 @@ public class MainActivity extends AppCompatActivity {
         return dbURL;
     }
 
+    private String getUSERNAME()
+    {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        String key = getResources().getString(R.string.userNameKey);
+        String userNAME =  settings.getString(key, null);
+        return userNAME;
+    }
+
     private void ResetControls()
     {
         ResetEditTextControl(R.id.editTextAdditionalNotes);
         ResetEditTextControl(R.id.edtxtGlucoseReading);
         ResetEditTextControl(R.id.edittxtCarbsGiven);
-        ResetEditTextControl(R.id.edtxtEnteredBy);
+        //ResetEditTextControl(R.id.edtxtEnteredBy);
+        EditTextControl(R.id.edtxtEnteredBy,getUSERNAME());
         ResetEditTextControl(R.id.edittxtInsulinGiven);
 
 
@@ -148,6 +158,13 @@ public class MainActivity extends AppCompatActivity {
     {
         EditText txt = (EditText)findViewById(id);
         txt.setText("");
+
+    }
+
+    private void EditTextControl(int id, String index)
+    {
+        EditText txt = (EditText)findViewById(id);
+        txt.setText(index);
 
     }
     private String GetCurrentTextInEditText(int Id) {
