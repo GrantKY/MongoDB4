@@ -183,9 +183,11 @@ public class MainActivity extends AppCompatActivity {
         // Event Type
         Spinner spinner = (Spinner)findViewById(R.id.spinner_event_types);
         String event_type = spinner.getSelectedItem().toString();
+
         //Web careportal stores Pump Site Change as Site Change this stopped CAGE working
-        if (event_type=="Pump Site Change"){
-            event_type="Site Change";
+        if (event_type.equals("Pump Site Change")){
+            event_type = "Site Change";
+
         }
         treatmentObj.SetEventType(event_type);
 
