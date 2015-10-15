@@ -19,6 +19,7 @@
     <string name="submit">Submit</string>
     <string name ="mongodbConnectionstringdefault">mongodb://&lt;username&gt;:&lt;password>@&lt;server&gt;:&lt;port&gt;/&lt;database&gt;</string>
     <string name ="mongodbKey">mongoDBString</string>
+    <string name ="userNameKey">userNameString</string>
     <string-array name="event_types">
         <item>BG Check</item>
         <item>Snack Bolus</item>

@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 // Apply the adapter to the spinner
         spinner_eatingin.setAdapter(adapter_eatingin);
 
+         EditTextControl(R.id.edtxtEnteredBy, getUSERNAME());
        // ClearSharedResources();
        // Set now and other status to default
         SetButtonStatus(false);
@@ -114,12 +115,21 @@ public class MainActivity extends AppCompatActivity {
         return dbURL;
     }
 
+    private String getUSERNAME()
+    {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        String key = getResources().getString(R.string.userNameKey);
+        String userNAME =  settings.getString(key, null);
+        return userNAME;
+    }
+
     private void ResetControls()
     {
         ResetEditTextControl(R.id.editTextAdditionalNotes);
         ResetEditTextControl(R.id.edtxtGlucoseReading);
         ResetEditTextControl(R.id.edittxtCarbsGiven);
-        ResetEditTextControl(R.id.edtxtEnteredBy);
+        //ResetEditTextControl(R.id.edtxtEnteredBy);
+        EditTextControl(R.id.edtxtEnteredBy,getUSERNAME());
         ResetEditTextControl(R.id.edittxtInsulinGiven);
 
 
@@ -150,6 +160,13 @@ public class MainActivity extends AppCompatActivity {
         txt.setText("");
 
     }
+
+    private void EditTextControl(int id, String index)
+    {
+        EditText txt = (EditText)findViewById(id);
+        txt.setText(index);
+
+    }
     private String GetCurrentTextInEditText(int Id) {
         EditText edittxt = (EditText)findViewById(Id);
         return edittxt.getText().toString();
@@ -161,8 +178,17 @@ public class MainActivity extends AppCompatActivity {
         TreatmentObject treatmentObj = new TreatmentObject();
 
         // Entered By
+        treatmentObj.SetEnteredBy(GetCurrentTextInEditText(R.id.edtxtEnteredBy));
+
+        // Event Type
         Spinner spinner = (Spinner)findViewById(R.id.spinner_event_types);
         String event_type = spinner.getSelectedItem().toString();
+
+        //Web careportal stores Pump Site Change as Site Change this stopped CAGE working
+        if (event_type.equals("Pump Site Change")){
+            event_type = "Site Change";
+
+        }
         treatmentObj.SetEventType(event_type);
 
         // Glucose Reading
@@ -181,9 +207,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Additional notes
         treatmentObj.SetAdditionalNotes(GetCurrentTextInEditText(R.id.editTextAdditionalNotes));
-
-        // Entered By
-        treatmentObj.SetEnteredBy(GetCurrentTextInEditText(R.id.edtxtEnteredBy));
 
         // Date Time
         RadioButton other_Button = (RadioButton)findViewById(R.id.rbOther);
