@@ -178,8 +178,17 @@ public class MainActivity extends AppCompatActivity {
         TreatmentObject treatmentObj = new TreatmentObject();
 
         // Entered By
+        treatmentObj.SetEnteredBy(GetCurrentTextInEditText(R.id.edtxtEnteredBy));
+
+        // Event Type
         Spinner spinner = (Spinner)findViewById(R.id.spinner_event_types);
         String event_type = spinner.getSelectedItem().toString();
+
+        //Web careportal stores Pump Site Change as Site Change this stopped CAGE working
+        if (event_type.equals("Pump Site Change")){
+            event_type = "Site Change";
+
+        }
         treatmentObj.SetEventType(event_type);
 
         // Glucose Reading
@@ -198,9 +207,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Additional notes
         treatmentObj.SetAdditionalNotes(GetCurrentTextInEditText(R.id.editTextAdditionalNotes));
-
-        // Entered By
-        treatmentObj.SetEnteredBy(GetCurrentTextInEditText(R.id.edtxtEnteredBy));
 
         // Date Time
         RadioButton other_Button = (RadioButton)findViewById(R.id.rbOther);
